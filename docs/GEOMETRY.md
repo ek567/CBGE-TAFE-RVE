@@ -8,7 +8,7 @@ Run `python run_geometry.py` from the repository root. The public interface reso
 
 Each physical particle is an axisymmetric ellipsoid with semi-axes `(a, b, b)`. For equivalent diameter `d` and aspect ratio `rho = a/b`, the sampler uses `a = (d/2) rho^(2/3)` and `b = (d/2) rho^(-1/3)`, preserving the volume `pi d^3 / 6`.
 
-`--aspect fixed:R` assigns the same ratio to every particle while their diameters still vary. `--aspect uniform:LO:HI` draws an independent ratio for each physical particle using a separate, reproducible size-seed-derived stream. It does not draw one ratio for an entire realization. See the [fixed and uniform branches](../geometry/src/generation/size_generator_3d.py).
+`--aspect fixed:R` assigns the same ratio to every particle while their diameters still vary. `--aspect uniform:LO:HI` draws an independent ratio for each physical particle using a separate size-seed-derived stream. It does not draw one ratio for an entire realization. See the [fixed and uniform branches](../geometry/src/generation/size_generator_3d.py).
 
 The public minimum-gap factor uses the theoretical smallest semi-minor axis permitted by the declared diameter and ratio bounds:
 
@@ -40,13 +40,11 @@ Orientation acceptance uses the geometry engine's target-alignment audit and the
 
 ## Budgets, retries and seeds
 
-The engine enforces a shared ceiling of **7000 committed optimizer iterations per geometry candidate**, across all native stages. Native `--steps 100000` is the unchanged local invocation limit and does not increase that shared ceiling. The paper's 6000-iteration setting and this engine's 7000-iteration ceiling are different settings; a reproduction record must identify which was used. Line-search trials, diameter sampling, final audits and receipt writing are not counted as committed optimizer iterations. See [`RealizationIterationBudget`](../geometry/src/resource_budget.py), the [local parser default](../geometry/src/main.py), and the [shared stage-budget argument](../geometry/src/main.py).
+The engine enforces a shared ceiling of **7000 committed optimizer iterations per geometry candidate**, across all native stages. Native `--steps 100000` is the unchanged local invocation limit and does not increase that shared ceiling. Line-search trials, diameter sampling, final audits and receipt writing are not counted as committed optimizer iterations. See [`RealizationIterationBudget`](../geometry/src/resource_budget.py), the [local parser default](../geometry/src/main.py), and the [shared stage-budget argument](../geometry/src/main.py).
 
 `--realizations K` requests K independently accepted geometries. Each request may consume at most **21 geometry candidates**, using the bounded acceptance controller. Each candidate can use the initial size seed plus at most **50 additional size-seed replacements** for volume-fraction admission, so there may be up to 51 size-seed attempts. That size policy is separate from the 21 geometry-candidate policy. Exhaustion or a fatal diagnostic produces a failed terminal receipt, not a fabricated accepted geometry. All attempted candidates and seed lineage are retained. See [`plan_seed_pairs`](../geometry/geometry_acceptance_retry.py), [`run_request`](../geometry/geometry_acceptance_retry.py), and the [native size-retry parser contract](../geometry/src/main.py).
 
-`--seed` controls position/orientation initialization and `--size-seed` controls the size/shape population. Both accept nonnegative integers. If `--seed` is omitted, the unchanged native default is used and recorded; it is not a recommended scientific seed. If `--size-seed` is omitted, it inherits the effective placement seed. For K greater than one, the original initial seed arithmetic is preserved: placement seed `base + 1000 + index`, size seed `size_base + index`, with a zero-based index. Subsequent candidates use the original collision-avoiding seed plan; receipts distinguish requested and effective size seeds. See [typed seed resolution](../public_cli/geometry_interface.py) and [native plan use](../public_cli/geometry_adapter.py).
-
-Choose seed values for your study and retain them with the resolved configuration.
+`--seed` controls position/orientation initialization and `--size-seed` controls the size/shape population. Both accept nonnegative integers. If `--seed` is omitted, the unchanged native default is used and recorded. If `--size-seed` is omitted, it inherits the effective placement seed. For K greater than one, the original initial seed arithmetic is preserved: placement seed `base + 1000 + index`, size seed `size_base + index`, with a zero-based index. Subsequent candidates use the original collision-avoiding seed plan; receipts distinguish requested and effective size seeds. See [typed seed resolution](../public_cli/geometry_interface.py) and [native plan use](../public_cli/geometry_adapter.py).
 
 ## Outputs
 
