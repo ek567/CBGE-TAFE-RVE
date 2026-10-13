@@ -1,0 +1,61 @@
+{
+  "schema": "cbge-paper-profile-v2.2",
+  "name": "vf30-reference",
+  "version": "2.2",
+  "original_geometry_source_sha256": "ea8eec0848d9ec3b8a80c68aca8f4843828122dbeed53a62f137174583604d37",
+  "geometry": {
+    "box_um": [
+      60.0,
+      60.0,
+      60.0
+    ],
+    "vf": 0.3,
+    "vf_tol": 0.005,
+    "deq_truncnorm_um": [
+      12.0,
+      2.4,
+      7.2,
+      16.8
+    ],
+    "aspect": "fixed:1.5",
+    "min_gap_factor": 0.1,
+    "min_gap_reference": "theoretical_minimum_semiminor_axis_from_declared_bounds",
+    "geo": "on",
+    "geo_widths_um": [
+      0.8,
+      0.8,
+      0.8
+    ],
+    "geo_tols_um": [
+      0.01,
+      0.01,
+      0.01
+    ],
+    "orientation": "3d-isotropic",
+    "orientation_tol": 0.05,
+    "overlap_tol": 1E-08,
+    "realizations": 1,
+    "orientation_acceptance_rule": "native_orientation"
+  },
+  "engine": {
+    "local_max_steps": 100000,
+    "shared_committed_iteration_budget_per_attempt": 7000,
+    "geometry_max_attempts": 21,
+    "size_seed_replacements": 50,
+    "native_default_seed": 12345,
+    "outer_seed_stride": 51000153,
+    "size_seed_stride": 1000003,
+    "tau_c": 1.5,
+    "tau_p": 1.5,
+    "pair_method": "uniform_grid",
+    "line_search": true,
+    "extent_filter": true,
+    "extent_sep_tol": 1E-12,
+    "geo_candidate_cache": true,
+    "stage0_search_overlap_tol": 0.002,
+    "stage123_search_overlap_tol": 0.0001,
+    "geo_energy_monitor_tol": 1E-10,
+    "heartbeat_steps": 0,
+    "unlisted_controls": "unchanged_native_parser_and_configuration_defaults_in_hash_verified_geometry_source"
+  }
+}

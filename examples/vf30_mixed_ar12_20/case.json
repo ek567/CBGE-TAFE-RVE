@@ -1,0 +1,23 @@
+{
+  "schema": "cbge-example-case-v2.2",
+  "name": "vf30_mixed_ar12_20",
+  "box_um": [
+    60.0,
+    60.0,
+    60.0
+  ],
+  "vf": 0.3,
+  "deq_truncnorm_um": [
+    12.0,
+    2.4,
+    7.2,
+    16.8
+  ],
+  "aspect": {
+    "mode": "uniform",
+    "lower": 1.2,
+    "upper": 2.0
+  },
+  "profile": "vf30-reference",
+  "mesh_target_ratio": 0.06
+}

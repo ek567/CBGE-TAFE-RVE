@@ -1,0 +1,289 @@
+{
+  "schema": "geometry-full-source-manifest-v1",
+  "baseline_id": "CBGE_TAFE_RVE_GEOMETRY_V2_2",
+  "identity_sha256": "52e1f72182ed19a4a78db14fda64ed2b415b32750e1e663f572915df3071f676",
+  "original_identity_sha256": "ea8eec0848d9ec3b8a80c68aca8f4843828122dbeed53a62f137174583604d37",
+  "member_count": 56,
+  "files": [
+    {
+      "path": "geometry_acceptance_retry.py",
+      "size": 35218,
+      "sha256": "e4ebe0451981e4425d7bfff45d700cfb85dec67143a326675c7d63febcf4ae72"
+    },
+    {
+      "path": "main.py",
+      "size": 99,
+      "sha256": "611a23044a65eadc582f778fd6131ad430afa78ac9b74f2c9196c68755d59271"
+    },
+    {
+      "path": "src/__init__.py",
+      "size": 5,
+      "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+    },
+    {
+      "path": "src/adaptation_identity.py",
+      "size": 1003,
+      "sha256": "4a2d079957acbcb76020a39939d8efacf64ac9271e6d6e8ce5bef91be033e215"
+    },
+    {
+      "path": "src/constraints/min_distance_3d.py",
+      "size": 2616,
+      "sha256": "f3b49d35b43555331ebffc4c5bfd94975c6ad1ff43530231221032e6f2cb1630"
+    },
+    {
+      "path": "src/data/__init__.py",
+      "size": 5,
+      "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+    },
+    {
+      "path": "src/data/pair_result_3d.py",
+      "size": 1486,
+      "sha256": "b70cebe6bc13b6aaa081b9dea310f691cafdf15b3a17f44a2acc74174564b40f"
+    },
+    {
+      "path": "src/data/particle_3d.py",
+      "size": 1220,
+      "sha256": "f9b3712e021bbf46a6f008cfa580b8dce3ab33d047566108a784afdf366b2517"
+    },
+    {
+      "path": "src/export/__init__.py",
+      "size": 5,
+      "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+    },
+    {
+      "path": "src/export/export_json_3d.py",
+      "size": 4792,
+      "sha256": "14b6ad32eb505794e01eef339bbc9319017a528b4fba71da53ce349fd93616f8"
+    },
+    {
+      "path": "src/generation/__init__.py",
+      "size": 5,
+      "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+    },
+    {
+      "path": "src/generation/size_generation_retry_3d.py",
+      "size": 4168,
+      "sha256": "c3e701e8de6b584e6cb59db8464c96f967e1c3d67fa283c10c4cf87a91eccda1"
+    },
+    {
+      "path": "src/generation/size_generator_3d.py",
+      "size": 9150,
+      "sha256": "21c0c328fecb2b0419e4bdac9ecf11db1312bf919760474bdccd474555eccc43"
+    },
+    {
+      "path": "src/main.py",
+      "size": 88786,
+      "sha256": "7ffd54bfc04d90534f029efe39340300259daead9f752bc1091f4633d290232a"
+    },
+    {
+      "path": "src/model/__init__.py",
+      "size": 5,
+      "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+    },
+    {
+      "path": "src/model/geometry_distortion_energy_3d.py",
+      "size": 28313,
+      "sha256": "bf1fc97592f617e44400b73f52fc7622991f65f03d7ba5c62951ce7ec5fd1a5c"
+    },
+    {
+      "path": "src/model/geometry_features_3d.py",
+      "size": 8574,
+      "sha256": "ce7ba7dfd0655eacbc25828976b96f4e5b356356ad0954b3b5899a369b641757"
+    },
+    {
+      "path": "src/model/orientation_regularization_3d.py",
+      "size": 3699,
+      "sha256": "2da16dd5bcd5f1ec1c4e23629d06e4743e7a3140ba7b1db2aa3a8bc0e9d6d115"
+    },
+    {
+      "path": "src/model/orientation_targets_3d.py",
+      "size": 1397,
+      "sha256": "8a776e652c460dd7926685981614b88821878e5ea0c409a346654aae275997bb"
+    },
+    {
+      "path": "src/model/overlap_status_3d.py",
+      "size": 2517,
+      "sha256": "048609419eca8eef7ba51df518cf38d5e5e237e00a575d8abe2d2df8e472b9ef"
+    },
+    {
+      "path": "src/model/pair_contact_geometry_3d.py",
+      "size": 3005,
+      "sha256": "35fcf560a00f27151cd3dec68e3ba29381b8022d920c9f14a644b7d5ed852f87"
+    },
+    {
+      "path": "src/model/pair_contact_measure_pw_3d.py",
+      "size": 2686,
+      "sha256": "aa0f20e342db20d7a305c71a16288a0d339de5cc3898f3e56ccc6ea5cbe569cd"
+    },
+    {
+      "path": "src/model/pair_gradient_3d.py",
+      "size": 5969,
+      "sha256": "aa4d6a7cc4a7c2bc127724c5419b81ad8d78b7ef03e71c26e1e5b9de0e413453"
+    },
+    {
+      "path": "src/model/pair_potential_3d.py",
+      "size": 372,
+      "sha256": "594cd427b69cd2ea15804cb67fc544e576bd0e62fbde1482a33ae3afd8037eb5"
+    },
+    {
+      "path": "src/model/projected_clearance_3d.py",
+      "size": 10390,
+      "sha256": "5a7eacd9f7b6bffe2e0155a618ef837a8c0fdebbd047fe796316ef8c4621de59"
+    },
+    {
+      "path": "src/model/q_matrix_3d.py",
+      "size": 1854,
+      "sha256": "23ee065d38f41fac4e5ddccb21fcc6e374137605dbaec75ddeb328bf67296960"
+    },
+    {
+      "path": "src/model/step_context_3d.py",
+      "size": 2305,
+      "sha256": "5fc06f25920e08a22b5e134d64f2e0cc6f9dec04afeb20932aa7cbb2c584806d"
+    },
+    {
+      "path": "src/model/total_potential_3d.py",
+      "size": 30859,
+      "sha256": "6cc75cbb006663f4b64d605fcad66aa5186e06202a174f8183a83abb97e0050d"
+    },
+    {
+      "path": "src/monitoring/__init__.py",
+      "size": 572,
+      "sha256": "56bc49521e1bd84c0d6570f58c4557daff749fd9382f2bd3372ce3d9075980bd"
+    },
+    {
+      "path": "src/monitoring/exporters_3d.py",
+      "size": 4314,
+      "sha256": "8806d750b801318ed278c2ab03681a40f95831bd2379ccc7ac072452f195152e"
+    },
+    {
+      "path": "src/monitoring/metrics_3d.py",
+      "size": 15771,
+      "sha256": "7890638aaf31e077ba3811c5a3aa40e5f844cb8e67291cf760a68562b5043ce5"
+    },
+    {
+      "path": "src/monitoring/timers_3d.py",
+      "size": 1425,
+      "sha256": "3d8a94322407640985fce7d33c7e28f0c88e61a4bb8a07477f22f5375866cecf"
+    },
+    {
+      "path": "src/optimizer/__init__.py",
+      "size": 899,
+      "sha256": "93757c7146e316dc46585a98a5de77198e73c17918c801b0cd563347a0bfa2e0"
+    },
+    {
+      "path": "src/optimizer/descent_3d.py",
+      "size": 51953,
+      "sha256": "7638488b18eb4abd4040f8d35767c67878c5b31ab5a62983fb4c60faadf2c240"
+    },
+    {
+      "path": "src/optimizer/line_search_3d.py",
+      "size": 39097,
+      "sha256": "1854b4f578412a1379f9cc37ca00b4e2504db937384ad18aefdf7794dbf172f7"
+    },
+    {
+      "path": "src/optimizer/retraction_3d.py",
+      "size": 3239,
+      "sha256": "461e44140600690af39fb6275b8cdd71c81a71254cd9073dd617c9dc19d88a3b"
+    },
+    {
+      "path": "src/optimizer/step_policy_3d.py",
+      "size": 6438,
+      "sha256": "0187ae61c547ba2dae3e273fc63bdae9802dcdffa8c0da515363a3ecb5088673"
+    },
+    {
+      "path": "src/overlap_detection/__init__.py",
+      "size": 1037,
+      "sha256": "856fda9ad4f7753758f8bfbc757b01c42bb6ffb4a165d92e8629f817a3899573"
+    },
+    {
+      "path": "src/overlap_detection/bounding_sphere_3d.py",
+      "size": 1946,
+      "sha256": "0f993f3cc41dbb1f679fd84e4d897c7f7abba4101ba98220394e2a8d85cd4c85"
+    },
+    {
+      "path": "src/overlap_detection/candidate_pairs_3d.py",
+      "size": 6074,
+      "sha256": "aaa88a3c1a7ea66a31979779b4859532146efe35d7f5740e98946f957546361d"
+    },
+    {
+      "path": "src/overlap_detection/directional_extent_3d.py",
+      "size": 757,
+      "sha256": "888de17fda0f029a6c5efec6587095b35f0daafe5e48474f53f250200b597d69"
+    },
+    {
+      "path": "src/overlap_detection/spatial_grid_3d.py",
+      "size": 10267,
+      "sha256": "41ca77fb137a7c1eba06a59490808ea5f25b02836b620001ec175abab30736a0"
+    },
+    {
+      "path": "src/periodic/__init__.py",
+      "size": 5,
+      "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+    },
+    {
+      "path": "src/periodic/mic_3d.py",
+      "size": 2062,
+      "sha256": "ba4205db558ccec37fa835b885c1056f3606eb6e079be6fd74942a906b84285b"
+    },
+    {
+      "path": "src/postprocess/origin_shift_3d.py",
+      "size": 11962,
+      "sha256": "693040d7d40f46d8744edf6937e8ee4e9a0548d8fc7697466de591a64ae1fd51"
+    },
+    {
+      "path": "src/resource_budget.py",
+      "size": 3913,
+      "sha256": "66f88b47647353c1e37ba9da73241ac42d387a766dda1a43c7ab3f465e4a2811"
+    },
+    {
+      "path": "src/utils/__init__.py",
+      "size": 5,
+      "sha256": "9f56e761d79bfdb34304a012586cb04d16b435ef6130091a97702e559260a2f2"
+    },
+    {
+      "path": "src/utils/math_utils.py",
+      "size": 1546,
+      "sha256": "3ed9033b8455bfa4862a7b2479f5c0b7027ea68f1948b032fe7daf0015ac1620"
+    },
+    {
+      "path": "src/validation/__init__.py",
+      "size": 282,
+      "sha256": "5543f83beed48664cf9ee02404dcb0b3bf4634ad87a0eab6113fa6ccee57bfcd"
+    },
+    {
+      "path": "src/validation/candidate_pair_consistency_check_3d.py",
+      "size": 13124,
+      "sha256": "f226cb58b239f67e1d5269686c28b8c91144a693992012f88dc1eb59bb11351a"
+    },
+    {
+      "path": "src/validation/expanded_periodic_overlap_audit_3d.py",
+      "size": 7301,
+      "sha256": "598415f99fadc47f52b19228f7ceac5e5c80f16dab56ad61eda5af1d1f50edfa"
+    },
+    {
+      "path": "src/validation/geometry_distortion_check_3d.py",
+      "size": 10729,
+      "sha256": "b28ca70d9242d6a81d4585541b795a0287b6b282b12794d2de7596656b472c21"
+    },
+    {
+      "path": "src/validation/orientation_isotropy_check_3d.py",
+      "size": 4169,
+      "sha256": "c69646f195e73609fe5ef70341bd12324b118b1c6ad3c72986a09a2eef6d676a"
+    },
+    {
+      "path": "src/validation/spatial_statistics_3d.py",
+      "size": 7663,
+      "sha256": "24e0f429fa601c6d2cd1c3a7283c86819eed5354c5b170af8b8e4beb63f88f36"
+    },
+    {
+      "path": "src/validation/spatial_statistics_plots_3d.py",
+      "size": 6822,
+      "sha256": "3515a9b857372990fd60db3780308c4acba8f5069f031f881c7dcc95a3e78e1e"
+    },
+    {
+      "path": "src/workflow/run_descent_with_constraints_3d.py",
+      "size": 12286,
+      "sha256": "1223876301e221c0a0238e2d888e13d6c5df765b4c82098cb6e24680976d7f93"
+    }
+  ]
+}
