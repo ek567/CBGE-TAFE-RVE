@@ -1,11 +1,27 @@
-# Geometry to CAE
+# FE construction for the README examples
 
-`run_fe.py` is the FE command entry and consumes geometry JSON; it does not generate geometry. `--input-json` supplies the scientific input and `--output-dir` supplies a fresh output directory. User-generated geometry requires an adjacent `geometry_acceptance.json` binding the exact JSON hash, source identity and required native final checks. The packaged mixed-aspect geometry at `examples/vf30_mixed_ar12_20/geometry.json` is recognized through its exact file and bound source identity. Missing or inconsistent input acceptance information prevents execution.
+Use Abaqus 2024 with the launcher configured as shown in [README.md](../README.md) and [ENVIRONMENT.md](ENVIRONMENT.md). Run the commands from the repository root.
 
-Accepted geometry can still fail native topology or periodic correspondence checks during CAE construction; the tool stops and retains diagnostics. To try a different initialization, explicitly generate and accept new geometry with a different seed and use a fresh FE output directory; mesh and tolerance settings are not changed automatically.
+For the fixed-aspect example, use the generated JSON:
 
-The positive mesh target ratio defaults to `0.06`. The M6 controller sets `mesh_target_len = ratio * max(box)`. `--node-match-tol` sets the coordinate correspondence tolerance `tol_pair`; omission uses `1e-6 * max(box)`. This tolerance is in input coordinate units and is separate from displacement residual checks and tie position tolerance.
+```powershell
+python run_fe.py --input-json ../runs/vf30_fixed_ar15/realization_001/geometry.json --mesh-target-ratio 0.06 --output-dir ../runs/vf30_fixed_ar15_fe
+```
 
-Without `--solve-elastic`, construction ends at M9 after periodic topology preparation, tetrahedral meshing, section assignment and interface surface/set preparation. The CAE is saved and closed. A byte-verified inspection copy is reopened for inventory checks and closed, while the primary CAE remains protected by its identity guard. This construction endpoint does not submit a solver job or produce an ODB/modulus. Explicit `--solve-elastic` with `--load-axis` and `--strain` adds the original M10/M11 tensile stage and creates an ODB. It does not extract result data or generate a curve, CSV, modulus result or summary automatically.
+For the mixed-aspect example, use the packaged JSON:
 
-The construction output includes a CAE, particle work JSON and a Stage 2 status record containing the corresponding paths, hashes and phase completion. Keep these files together. If tensile solution is explicitly requested, also retain its run configuration and ODB. The Al/SiC material settings and FE controls are defined in [run_fe.py](../run_fe.py). Read [ELASTIC.md](ELASTIC.md) before requesting analysis and [ENVIRONMENT.md](ENVIRONMENT.md) for launcher setup.
+```powershell
+python run_fe.py --input-json examples/vf30_mixed_ar12_20/geometry.json --mesh-target-ratio 0.06 --output-dir ../runs/vf30_mixed_ar12_20_fe
+```
+
+To use the generated mixed-aspect JSON instead, replace `--input-json` with `../runs/vf30_mixed_ar12_20/realization_001/geometry.json` and choose a fresh FE output directory. Keep the generated JSON and its companion `geometry_acceptance.json` together.
+
+| Parameter | Use |
+| --- | --- |
+| `--input-json` | Geometry file to model. |
+| `--mesh-target-ratio 0.06` | Sets the target mesh length to `0.06 * max(box)`; for a 60-micrometre box this is 3.6 micrometres. |
+| `--output-dir` | A fresh output directory outside the repository. |
+
+Successful construction writes `official_success/final.cae` inside the selected output directory. These example commands construct and save the FE model without submitting a solution job.
+
+If construction fails, inspect the terminal message and Abaqus output before another request. A geometry JSON does not guarantee successful FE construction. Use a different geometry input and a fresh output directory when making another request; the FE command does not generate a replacement geometry automatically.

@@ -1,7 +1,7 @@
 {
   "schema": "geometry-full-source-manifest-v1",
   "baseline_id": "CBGE_TAFE_RVE_GEOMETRY_V2_2",
-  "identity_sha256": "52e1f72182ed19a4a78db14fda64ed2b415b32750e1e663f572915df3071f676",
+  "identity_sha256": "1abe17c5e611129a5e54a80b7f4ab4b18d48d04febc5b3e9b507e0056600e193",
   "original_identity_sha256": "ea8eec0848d9ec3b8a80c68aca8f4843828122dbeed53a62f137174583604d37",
   "member_count": 56,
   "files": [
@@ -72,8 +72,8 @@
     },
     {
       "path": "src/main.py",
-      "size": 88786,
-      "sha256": "7ffd54bfc04d90534f029efe39340300259daead9f752bc1091f4633d290232a"
+      "size": 88554,
+      "sha256": "8148f23f4aa42e0a5b7b745fea1a409c8d81048aa29baba19218ed68bb65e162"
     },
     {
       "path": "src/model/__init__.py",

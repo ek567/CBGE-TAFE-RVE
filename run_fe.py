@@ -6560,7 +6560,7 @@ def _run_tensile(args):
     return _execute_tensile(prepared, receipt, output, adapter)
 
 def build_parser():
-    parser = argparse.ArgumentParser(description='Periodic geometry JSON to saved CAE, with optional explicit static tensile solve. No automatic result extraction or geometry retry.')
+    parser = argparse.ArgumentParser(description='Build a CAE model from geometry JSON, with optional static tensile loading.')
     parser.add_argument('--input-json', type=Path)
     parser.add_argument('--output-dir', type=Path)
     parser.add_argument('--mesh-target-ratio', type=finite_positive, default=0.06)
@@ -6594,7 +6594,7 @@ def main(argv=None):
             print(json.dumps({'status': status, 'error_type': type(exc).__name__, 'reason': str(exc)}, indent=2), file=sys.stderr)
     value = {'schema': 'cbge-fe-run-status-v1', 'status': status, 'automatic_retry': False, 'geometry_generation': False, 'automatic_result_extraction': False, 'solve_elastic_requested': args.solve_elastic, 'solver_execution': args.solve_elastic and not args.dry_run and status in ('TENSILE_SOLVE_COMPLETED', 'TENSILE_SOLVE_FAILED'), 'resolved_configuration': config, 'terminal': True}
     if result and status == 'FE_FAILED':
-        value['next_action'] = 'Inspect the FE error; for a geometry-related failure, choose a different seed and size-seed, generate a new accepted geometry, and rerun FE in a fresh output directory.'
+        value['next_action'] = 'Inspect the FE error and use a fresh output directory for the next request.'
     if args.dry_run and args.solve_elastic:
         value['tensile_input_status'] = 'NOT_EXECUTED_PENDING_NATIVE_CAE'
     if output.is_dir():

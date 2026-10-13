@@ -31,7 +31,7 @@ python run_fe.py --input-json ../runs/vf30_fixed_ar15/realization_001/geometry.j
 
 Keep the generated `geometry.json` and its adjacent `geometry_acceptance.json` together for FE input.
 
-## Independent uniform aspect ratios over [1.2, 2.0]
+## Aspect ratio range [1.2, 2.0]
 
 Box dimensions are 60 by 60 by 60 micrometres and target volume fraction is 0.30. Generate a geometry using:
 
@@ -45,6 +45,4 @@ The packaged mixed-aspect geometry can be used directly for FE construction:
 python run_fe.py --input-json examples/vf30_mixed_ar12_20/geometry.json --mesh-target-ratio 0.06 --output-dir ../runs/vf30_mixed_ar12_20_fe
 ```
 
-To use your own generated mixed-aspect geometry, replace `--input-json` with `../runs/vf30_mixed_ar12_20/realization_001/geometry.json` and keep its adjacent `geometry_acceptance.json`. The packaged geometry and a newly generated geometry are separate inputs. See [GEOMETRY_TO_CAE.md](docs/GEOMETRY_TO_CAE.md) for FE input requirements.
-
-If FE construction fails, choose new initialization values with `--seed` and `--size-seed` when generating another geometry, then use a fresh FE output directory. The FE command does not regenerate geometry automatically.
+To use the generated geometry from the command above, set `--input-json` to `../runs/vf30_mixed_ar12_20/realization_001/geometry.json` and keep its adjacent `geometry_acceptance.json`. See [GEOMETRY_TO_CAE.md](docs/GEOMETRY_TO_CAE.md) for FE input requirements.

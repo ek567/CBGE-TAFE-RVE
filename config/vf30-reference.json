@@ -1,6 +1,4 @@
 {
-  "schema": "cbge-paper-profile-v2.2",
-  "name": "vf30-reference",
   "version": "2.2",
   "original_geometry_source_sha256": "ea8eec0848d9ec3b8a80c68aca8f4843828122dbeed53a62f137174583604d37",
   "geometry": {
@@ -55,7 +53,6 @@
     "stage0_search_overlap_tol": 0.002,
     "stage123_search_overlap_tol": 0.0001,
     "geo_energy_monitor_tol": 1E-10,
-    "heartbeat_steps": 0,
-    "unlisted_controls": "unchanged_native_parser_and_configuration_defaults_in_hash_verified_geometry_source"
+    "heartbeat_steps": 0
   }
 }

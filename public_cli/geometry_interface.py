@@ -72,7 +72,7 @@ def aspect(value):
 
 
 def parser():
-    p = argparse.ArgumentParser(description='Generate independently accepted periodic ellipsoidal geometry using the bound scientific engine.')
+    p = argparse.ArgumentParser(description='Generate periodic ellipsoidal geometry.')
     p.add_argument('--profile', choices=('vf30-reference',), default='vf30-reference')
     p.add_argument('--box', nargs=3, type=positive, metavar=('LX', 'LY', 'LZ'))
     p.add_argument('--vf', type=positive)
@@ -88,13 +88,13 @@ def parser():
     tolerances.add_argument('--geo-tol', type=nonnegative)
     tolerances.add_argument('--geo-tols', nargs=3, type=nonnegative, metavar=('FACE', 'EDGE', 'CORNER'))
     p.add_argument('--orientation', choices=ORIENTATION_MODES)
-    p.add_argument('--orientation-tol', type=nonnegative, help='Orientation tolerance used by the native generation and final acceptance rules.')
+    p.add_argument('--orientation-tol', type=nonnegative, help='Set the orientation tolerance.')
     p.add_argument('--overlap-tol', type=nonnegative)
     p.add_argument('--realizations', type=count)
-    p.add_argument('--seed', type=seed_value, help='Optional explicit reproducibility seed; no recommended seed value.')
-    p.add_argument('--size-seed', type=seed_value, help='Optional independent size/shape seed; omission inherits the effective placement seed.')
+    p.add_argument('--seed', type=seed_value, help='Nonnegative integer parameter.')
+    p.add_argument('--size-seed', type=seed_value, help='Nonnegative integer parameter.')
     p.add_argument('--output-dir', type=Path)
-    p.add_argument('--show-config', action='store_true', help='Resolve configuration without scientific imports, calculation or output creation.')
+    p.add_argument('--show-config', action='store_true', help='Print resolved parameters and exit.')
     return p
 
 

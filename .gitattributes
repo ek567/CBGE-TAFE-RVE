@@ -1,2 +1,3 @@
-* text=auto eol=lf
+* -text
 *.zip binary
+examples/vf30_mixed_ar12_20/geometry.json -text

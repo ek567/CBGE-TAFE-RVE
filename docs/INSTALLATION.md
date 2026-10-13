@@ -1,10 +1,10 @@
 # Installation
 
-These instructions target 64-bit Python 3.11 on Windows with a separate virtual environment, public PyPI packages and a local build of the public `pw85` source. Abaqus is installed separately.
+Install the geometry dependencies for the README examples using 64-bit Python 3.11 on Windows, a separate virtual environment and the public `pw85` source. Abaqus 2024 must be installed and licensed separately.
 
 Use an x64 Developer PowerShell with the Visual Studio C++ build tools and Windows SDK available. `cl.exe` must be discoverable in that shell. The upstream extension requires C++17. A standard PowerShell without the developer compiler environment may not find the compiler.
 
-Start in the repository root. These commands create project-local environments, downloads and build files; keep them outside commits. No existing environment is needed.
+Start in the repository root. These commands create the Python environment and dependency build directories.
 
 ```powershell
 python --version
@@ -39,7 +39,7 @@ tar.exe -xf $boostInfo.FullName -C ".deps/boost-info"
 
 These checksums identify the pinned download archives. The upstream Git commit identifies the source revision. If a download checksum differs, verify that the source/package identity is correct before continuing.
 
-Build without modifying the upstream source. `/utf-8` is required for the original non-ASCII documentation strings when compiling with MSVC; it changes the source/execution character set, not the numerical algorithm. Preserve the upstream license files and source notices.
+Build pw85 with the MSVC UTF-8 character set enabled. Retain the upstream license files and source notices.
 
 ```powershell
 $boostInclude = (Resolve-Path ".deps/boost/Library/include").Path
@@ -54,18 +54,14 @@ Pop-Location
 & $pythonExe -m pip --isolated check
 ```
 
-Perform a tiny dependency API check before running a geometry case:
+Check that the installed packages can be imported:
 
 ```powershell
 $env:MPLCONFIGDIR = Join-Path $projectRoot ".deps/matplotlib-config"
-& $pythonExe -I -B -c "import numpy as n, scipy, matplotlib, pypw85; q=n.array([1.,0.,0.,1.,0.,1.]); out=n.empty(2); rc=pypw85.contact_function(n.array([3.,0.,0.]),q,q,out); assert rc==0 and n.allclose(out,[2.25,0.5]); print(pypw85.__file__); print(out)"
+& $pythonExe -I -B -c "import numpy, scipy, matplotlib, pypw85; print(numpy.__version__, scipy.__version__, matplotlib.__version__)"
 ```
 
-The native binding expects float64 displacement arrays with three entries, compact symmetric matrices `[xx, xy, xz, yy, yz, zz]` with six entries, and a mutable two-entry output array `[contact_function, lambda]`. A 3×3 matrix passed directly is not that compact representation.
-
-The analytic sphere check confirms that the installed extension accepts the required compact-array interface. It does not generate an RVE or run FE analysis.
-
-For later geometry commands, use this environment's interpreter and the documented thread caps:
+Use this environment's interpreter and the thread caps below for the README commands:
 
 ```powershell
 $env:OMP_NUM_THREADS = "1"
@@ -76,7 +72,12 @@ $env:NUMEXPR_NUM_THREADS = "1"
 & $pythonExe run_fe.py --help
 ```
 
-Abaqus is a separate licensed runtime. Geometry runs in the Python environment above; FE drivers dispatch the explicitly supplied Abaqus launcher. Abaqus executables, licenses, CAE/ODB files and installers are not included. Configure that launcher through the public FE command rather than using a local-path default.
+The FE commands use Abaqus 2024. Set the installed launcher in the same PowerShell session:
 
-For other platforms and compilers, consult the [upstream installation documentation](https://github.com/sbrisard/pw85/blob/515da5a74002c956c9e12b4918659a51b92eca37/docs/installation.html).
+```powershell
+$env:CBGE_ABAQUS_COMMAND = (Get-Command abaqus -ErrorAction Stop).Source
+New-Item -ItemType Directory -Force ../runs | Out-Null
+```
+
+Run the geometry and FE commands in [README.md](../README.md) from the repository root.
 
