@@ -26,6 +26,22 @@ Box dimensions are 60 by 60 by 60 micrometres and target volume fraction is 0.30
 
 ```powershell
 python run_geometry.py --profile vf30-reference --box 60 60 60 --vf 0.30 --deq-truncnorm 12 2.4 7.2 16.8 --aspect fixed:1.5 --orientation 3d-isotropic --geo-width 0.8 --realizations 1 --output-dir ../runs/vf30_fixed_ar15
+```
+
+Successful geometry JSON generation does not guarantee successful FE model construction.
+
+If FE construction fails, inspect the reported error and consider adjustments appropriate to the geometry and modelling requirements:
+
+- Reduce `--mesh-target-ratio` below the example value of `0.06` to obtain a smaller target mesh length.
+- Moderately increase the box dimensions through `--box`, where appropriate for the intended model.
+- Select `--geo-width` according to the particle size range and the required face, edge and corner safety-band widths.
+- Adjust `--seed` for position/orientation initialization and `--size-seed` for particle size/shape initialization. Specify both options explicitly to control these settings separately; an omitted `--size-seed` inherits the effective `--seed`.
+
+Changes to `--box`, `--geo-width`, `--seed` or `--size-seed` require generating a new geometry JSON. Do not modify the packaged example JSON directly. Changing only `--mesh-target-ratio` allows reuse of the same geometry JSON.
+
+The target mesh length is `mesh-target-ratio × max(box)`. When increasing the largest box dimension, reassess `--mesh-target-ratio` to maintain the intended mesh resolution. Use fresh output directories for new geometry and FE requests. These notes apply to both examples.
+
+```powershell
 python run_fe.py --input-json ../runs/vf30_fixed_ar15/realization_001/geometry.json --mesh-target-ratio 0.06 --output-dir ../runs/vf30_fixed_ar15_fe
 ```
 
@@ -33,16 +49,18 @@ Keep the generated `geometry.json` and its adjacent `geometry_acceptance.json` t
 
 ## Aspect ratio range [1.2, 2.0]
 
-Box dimensions are 60 by 60 by 60 micrometres and target volume fraction is 0.30. Generate a geometry using:
-
-```powershell
-python run_geometry.py --profile vf30-reference --box 60 60 60 --vf 0.30 --deq-truncnorm 12 2.4 7.2 16.8 --aspect uniform:1.2:2.0 --orientation 3d-isotropic --geo-width 0.8 --realizations 1 --output-dir ../runs/vf30_mixed_ar12_20
-```
-
-The packaged mixed-aspect geometry can be used directly for FE construction:
+Box dimensions are 60 by 60 by 60 micrometres and target volume fraction is 0.30. Use the packaged mixed-aspect geometry directly for FE construction; this command does not require a geometry-generation step:
 
 ```powershell
 python run_fe.py --input-json examples/vf30_mixed_ar12_20/geometry.json --mesh-target-ratio 0.06 --output-dir ../runs/vf30_mixed_ar12_20_fe
 ```
 
-To use the generated geometry from the command above, set `--input-json` to `../runs/vf30_mixed_ar12_20/realization_001/geometry.json` and keep its adjacent `geometry_acceptance.json`. See [GEOMETRY_TO_CAE.md](docs/GEOMETRY_TO_CAE.md) for FE input requirements.
+### Optional geometry generation
+
+To generate a mixed-aspect geometry instead of using the packaged JSON:
+
+```powershell
+python run_geometry.py --profile vf30-reference --box 60 60 60 --vf 0.30 --deq-truncnorm 12 2.4 7.2 16.8 --aspect uniform:1.2:2.0 --orientation 3d-isotropic --geo-width 0.8 --realizations 1 --output-dir ../runs/vf30_mixed_ar12_20
+```
+
+For FE construction with this generated geometry, set `--input-json` to `../runs/vf30_mixed_ar12_20/realization_001/geometry.json` and keep its adjacent `geometry_acceptance.json`. See [GEOMETRY_TO_CAE.md](docs/GEOMETRY_TO_CAE.md) for FE input requirements.
